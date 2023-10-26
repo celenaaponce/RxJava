@@ -1,0 +1,29 @@
+package com.example.rxjava;
+
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class MapOperation {
+    public static void mp(){
+        List<Integer> collect = Stream.of(1,2,3,4,5,6,7,8,9,10)
+                .map(e -> e * 25)
+                .collect(Collectors.toList());
+        collect.forEach(e -> Log.e("e", e.toString()));
+
+        List<Book> books = new ArrayList<>();
+        books.add(new Book("The Alchemist", "Paulo", "Adventure", 4.408));
+        books.add(new Book("The Notebook", "Sparks", "Romance", 4.10));
+        books.add(new Book("Horror Cocktail", "Bloch", "Horror", 2.67));
+        books.add(new Book("House of Leaves", "Mark", "Horror", 4.109));
+
+        books.stream()
+                .filter((book) -> book.getGenre().equalsIgnoreCase("Horror"))
+                .filter((book) -> book.getRating() > 3)
+                .map(book -> book.getName())
+                .forEach(e -> Log.e("e", e));
+    }
+}
